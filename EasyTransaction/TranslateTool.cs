@@ -189,8 +189,10 @@ namespace EasyTransaction
             request.Method = "get";
             request.ContentType = "application/json; charset=UTF-8";
 
-
-            request.Referer = this.WebBrowser.Document.Url.ToString();
+            this.WebBrowser.Invoke(new Action(() =>
+            {
+                request.Referer = this.WebBrowser.Document.Url.ToString();
+            }));
 
 
             //request.Host = this.GoogleTranslateWeb.ToString();//  "translate.google.cn";
