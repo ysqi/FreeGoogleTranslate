@@ -35,6 +35,7 @@ namespace EasyTransaction
             IsReady(false);
             txtResult.MaxLength = int.MaxValue;
             statusStrip1.Visible = false;
+            lblProcess.Text = "";
 
         }
 
@@ -158,7 +159,7 @@ namespace EasyTransaction
         }
 
         private void btnAction_Click(object sender, EventArgs e)
-        {
+        { 
             DoWork((btnAction.Tag as string) != "runing");
         }
 
@@ -176,17 +177,25 @@ namespace EasyTransaction
             }
             else
             {
-                if (openFileDialog1.FileName == null)
-                {
-                    MessageBox.Show("请先选择要翻译的文件");
-                    return;
-                }
+              
                 try
                 {
+                    var file = openFileDialog1.FileName;
+                    if (string.IsNullOrWhiteSpace(file))
+                    {
+                        MessageBox.Show("请先选择要翻译的文件");
+                        return;
+                    }
+                    else if (!File.Exists(file))
+                    {
+                        MessageBox.Show("待翻译文件不存在");
+                        return;
+                    }
+
                     tran.FromLanguage = txtFromLan.Text.Trim();
                     tran.ToLanguage = txtToLan.Text.Trim();
                     tran.Interval = (int)numTranslateInv.Value;
-                    tran.Start(openFileDialog1.FileName);
+                    tran.Start(file);
                     btnAction.Tag = "runing";
                     btnAction.Text = "停止";
                     statusStrip1.Visible = true;
@@ -215,7 +224,15 @@ namespace EasyTransaction
             {
                 return;
             }
-            Process.Start(filename);
+            try
+            {
+
+                Process.Start(Path.GetFullPath(filename));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("打开文件失败,"+ex.Message);
+            }
         }
 
 
