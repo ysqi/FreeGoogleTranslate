@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.wb = new System.Windows.Forms.WebBrowser();
             this.gpWeb = new System.Windows.Forms.GroupBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnChangeURL = new System.Windows.Forms.Button();
+            this.txtUrl = new System.Windows.Forms.TextBox();
             this.txtTestText = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRunTest = new System.Windows.Forms.Button();
@@ -55,16 +58,13 @@
             this.toolLableStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtResult = new System.Windows.Forms.TextBox();
-            this.txtUrl = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnChangeURL = new System.Windows.Forms.Button();
             this.gpWeb.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numTranslateInv)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // wb
@@ -94,6 +94,34 @@
             this.gpWeb.TabIndex = 1;
             this.gpWeb.TabStop = false;
             this.gpWeb.Text = "浏览：";
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.btnChangeURL);
+            this.panel1.Controls.Add(this.txtUrl);
+            this.panel1.Location = new System.Drawing.Point(602, 72);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(236, 44);
+            this.panel1.TabIndex = 2;
+            // 
+            // btnChangeURL
+            // 
+            this.btnChangeURL.Location = new System.Drawing.Point(129, 19);
+            this.btnChangeURL.Name = "btnChangeURL";
+            this.btnChangeURL.Size = new System.Drawing.Size(106, 26);
+            this.btnChangeURL.TabIndex = 2;
+            this.btnChangeURL.Text = "修改翻译网址";
+            this.btnChangeURL.UseVisualStyleBackColor = true;
+            this.btnChangeURL.Click += new System.EventHandler(this.btnChangeURL_Click);
+            // 
+            // txtUrl
+            // 
+            this.txtUrl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtUrl.Location = new System.Drawing.Point(0, 0);
+            this.txtUrl.Name = "txtUrl";
+            this.txtUrl.Size = new System.Drawing.Size(236, 21);
+            this.txtUrl.TabIndex = 1;
             // 
             // txtTestText
             // 
@@ -321,7 +349,7 @@
             // toolProBar
             // 
             this.toolProBar.Name = "toolProBar";
-            this.toolProBar.Size = new System.Drawing.Size(525, 16);
+            this.toolProBar.Size = new System.Drawing.Size(383, 16);
             // 
             // toolLableStatus
             // 
@@ -355,34 +383,6 @@
     "测试】，检测自动翻译是否正常\r\n3. 在批量翻译过程中，尽量不要操作上面页面，防止自动翻译获取Token失败\r\n========================" +
     "==========\r\n";
             // 
-            // txtUrl
-            // 
-            this.txtUrl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtUrl.Location = new System.Drawing.Point(0, 0);
-            this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(236, 21);
-            this.txtUrl.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.btnChangeURL);
-            this.panel1.Controls.Add(this.txtUrl);
-            this.panel1.Location = new System.Drawing.Point(602, 72);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(236, 44);
-            this.panel1.TabIndex = 2;
-            // 
-            // btnChangeURL
-            // 
-            this.btnChangeURL.Location = new System.Drawing.Point(129, 19);
-            this.btnChangeURL.Name = "btnChangeURL";
-            this.btnChangeURL.Size = new System.Drawing.Size(106, 26);
-            this.btnChangeURL.TabIndex = 2;
-            this.btnChangeURL.Text = "修改翻译网址";
-            this.btnChangeURL.UseVisualStyleBackColor = true;
-            this.btnChangeURL.Click += new System.EventHandler(this.btnChangeURL_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -398,6 +398,8 @@
             this.Text = "Google批量翻译小助手";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.gpWeb.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -407,8 +409,6 @@
             this.statusStrip1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

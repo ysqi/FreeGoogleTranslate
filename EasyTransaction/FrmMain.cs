@@ -15,7 +15,7 @@ using System.Windows.Forms;
 namespace EasyTransaction
 {
     public partial class FrmMain : Form
-    { 
+    {
         TranslateTool tool;
         BatchTran tran;
         Stopwatch workTimeWatch;
@@ -23,7 +23,7 @@ namespace EasyTransaction
         public FrmMain()
         {
             InitializeComponent();
-            tool = new TranslateTool(wb, "http://translate.google.cn" );
+            tool = new TranslateTool(wb, "http://translate.google.cn");
             tran = new BatchTran(tool)
             {
                 FromLanguage = "en",
@@ -82,10 +82,8 @@ namespace EasyTransaction
                     info += "消息:" + args.Message;
                 }
                 toolLableStatus.Text = info;
-                if (args.CompletedCount == 0)
-                {
-                    lkSaveFile.Text = "Open:" + Path.GetFileName(tran.GetSaveFileName());
-                }
+
+                lkSaveFile.Text = "Open:" + Path.GetFileName(tran.GetSaveFileName());
             }));
         }
 
@@ -159,7 +157,7 @@ namespace EasyTransaction
         }
 
         private void btnAction_Click(object sender, EventArgs e)
-        { 
+        {
             DoWork((btnAction.Tag as string) != "runing");
         }
 
@@ -177,7 +175,7 @@ namespace EasyTransaction
             }
             else
             {
-              
+
                 try
                 {
                     var file = openFileDialog1.FileName;
@@ -231,7 +229,7 @@ namespace EasyTransaction
             }
             catch (Exception ex)
             {
-                MessageBox.Show("打开文件失败,"+ex.Message);
+                MessageBox.Show("打开文件失败," + ex.Message);
             }
         }
 
@@ -241,8 +239,9 @@ namespace EasyTransaction
             if (checkSavePath())
             {
                 tran.SaveDir = txtResultSaveDir.Text.Trim();
-            }else
-            { 
+            }
+            else
+            {
                 txtResultSaveDir.Focus();
                 txtResultSaveDir.SelectAll();
             }
@@ -264,7 +263,7 @@ namespace EasyTransaction
             }
             try
             {
-                Directory.CreateDirectory(dir); 
+                Directory.CreateDirectory(dir);
             }
             catch (Exception ex)
             {
@@ -284,10 +283,10 @@ namespace EasyTransaction
             }
             if (!url.StartsWith("https://") && !url.StartsWith("http://"))
             {
-                url = "http://" + url; 
+                url = "http://" + url;
             }
             try
-            { 
+            {
                 var u = new Uri(url);
                 tool.GoogleTranslateWeb = u;
             }
