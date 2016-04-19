@@ -304,8 +304,8 @@ namespace EasyTransaction
         private void initResultFile()
         {
 
-            successFileName = Path.Combine(this.SaveDir , string.Format("{0}_success_{1:yyyMMddHHmmss}.xml", Path.GetFileNameWithoutExtension(this.srcFileName), DateTime.Now));
-            var failFileName = Path.Combine(this.SaveDir, string.Format("{0}_fail_{1:yyyMMddHHmmss}.xml", Path.GetFileNameWithoutExtension(this.srcFileName), DateTime.Now));
+            successFileName = Path.Combine(this.SaveDir, string.Format("{0}_success_{1:yyyMMddHHmmss}.xml", Path.GetFileNameWithoutExtension(this.srcFileName), DateTime.Now));
+            var failFileName = Path.Combine(this.SaveDir, string.Format("{0}_fail_{1:yyyMMddHHmmss}.txt", Path.GetFileNameWithoutExtension(this.srcFileName), DateTime.Now));
 
             string dir = Path.GetDirectoryName(successFileName);
             if (Directory.Exists(dir) == false)
@@ -316,9 +316,8 @@ namespace EasyTransaction
             this.failResultWriter = File.CreateText(failFileName);
 
             successResultWriter.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
-            failResultWriter.WriteLine("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
             successResultWriter.AutoFlush = true;
-            failResultWriter.AutoFlush = true; 
+            failResultWriter.AutoFlush = true;
         }
 
 
@@ -363,9 +362,7 @@ namespace EasyTransaction
             }
             else
             {
-                failResultWriter.WriteLine("<item>");
-                failResultWriter.WriteLine("<hw>" + result.Text + "<hw>");
-                failResultWriter.WriteLine("<tr></tr><err>" + result.ErrorMessage + "</err></item>");
+                failResultWriter.WriteLine(result.Text);
             }
 
         }
